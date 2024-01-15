@@ -1,21 +1,29 @@
 Cypress.Commands.add('accessLoginPage', () => {
-        const accessLoginPage = () => {
-            cy.visit('')
-        }
+    const accessLoginPage = () => {
+        cy.visit('')
+    }
 
-        accessLoginPage()
-    })
+    accessLoginPage()
+})
 
 Cypress.Commands.add('login', (
     user = Cypress.env('user_name'),
     password = Cypress.env('password')
-    ) => {//aqui login variavel eh uma funcao arrow
-        const login = () => {
-            cy.accessLoginPage()
-            cy.get('[data-test="username"]').type(user)
-            cy.get('[data-test="password"]').type(password, { log: false})
-            cy.get('[data-test="login-button"]').click()
-        }
+) => {//aqui login variavel eh uma funcao arrow
+    const login = () => {
+        cy.get('[data-test="username"]').type(user)
+        cy.get('[data-test="password"]').type(password, { log: false })
+        cy.get('[data-test="login-button"]').click()
+    }
 
-        login()
-    })
+    login()
+})
+
+Cypress.Commands.add('logout', () => {
+    const logout = () => {
+        cy.get('#react-burger-menu-btn').click()
+        cy.get('#logout_sidebar_link').click()
+    }
+
+    logout()
+})
