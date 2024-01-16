@@ -11,7 +11,12 @@ describe('Login', () => {
   })
 
   it('successfully', () => {
-    cy.login()
+    const options = { cacheSession: false }
+    const user = Cypress.env('user_name'),
+    const password = Cypress.env('password')
+
+    cy.login(user, password, options)
+
     cy.get('.title').should('be.visible')
     cy.get('.app_logo').should('be.visible')
     cy.get('.shopping_cart_link').should('be.visible')
