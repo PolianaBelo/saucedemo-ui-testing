@@ -12,10 +12,10 @@ describe('Login', () => {
 
   it('successfully', () => {
     const options = { cacheSession: false }
-    const user = Cypress.env('user_name'),
+    const user = Cypress.env('user_name')
     const password = Cypress.env('password')
 
-    cy.login(user, password, options)
+    cy.login()
 
     cy.get('.title').should('be.visible')
     cy.get('.app_logo').should('be.visible')

@@ -12,27 +12,13 @@ Cypress.Commands.add('login', (
     { cacheSession = true } = {},
 ) => {
     const login = () => {
+        cy.visit('')
         cy.get('[data-test="username"]').type(user)
         cy.get('[data-test="password"]').type(password, { log: false })
         cy.get('[data-test="login-button"]').click()
     }
-
-    const validate = () => {
-        cy.visit('/')
-        cy.location('pathname', { timeout: 1000 })
-          .should('not.eq', '/users/sign_in')
-      }
-
-    const options = {
-        cacheAcrossSpecs: true,
-        validate,
-    }
-
-    if (cacheSession) {
-        cy.session(user, login, options)
-    } else {
-        login()
-    }
+    
+    login()
 })
 
 Cypress.Commands.add('logout', () => {
